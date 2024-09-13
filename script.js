@@ -15,8 +15,12 @@ function getRandomColor() {
 }
 
 // loop for adding the squares inside the grid container
-for (let i = 0; i < size; i++) {
+for (let i = 0; i < size;  i++) {
   const div = document.createElement("div");
   div.classList.add("square");
+//   changing the background colour on hover
+div.addEventListener("mouseover", () => {
+    div.style.backgroundColor = getRandomColor();
+})
   gridContainer.appendChild(div);
 }
