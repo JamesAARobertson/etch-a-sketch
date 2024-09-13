@@ -1,6 +1,6 @@
 // Select grid container
 const gridContainer = document.querySelector(".grid-container");
-const resetButton = document.querySelector(".resetButton");
+const resizeButton = document.querySelector(".resizeButton");
 const slider = document.querySelector("#gridSize");
 const gridValue = document.querySelector("#gridValue");
 
@@ -40,14 +40,18 @@ function colorEffect() {
   });
 }
 
-resetButton.addEventListener("click", () => {
-  let squaresPerSide = prompt("Enter a new grid size between 1 and 100:");
-
-  squaresPerSide = parseInt(squaresPerSide);
-  if (isNaN(squaresPerSide) || squaresPerSide < 1 || squaresPerSide > 100) {
-    alert("Invalid input! Please enter a number between 1 and 100.");
-    return;
+resizeButton.addEventListener("click", () => {
+  let size = parseInt(prompt("Enter a new grid size between 1 and 100:"));
+  if (size >= 1 && size <= 100) {
+    createGrid(size);
+    slider.value = size;
+    gridValue.textContent = size;
   }
-
-  createGrid(squaresPerSide);
 });
+
+slider.addEventListener("input", (e) => {
+  const size = e.target.value;
+  gridValue.textContent = size
+  createGrid(size)
+})
+createGrid(16);
